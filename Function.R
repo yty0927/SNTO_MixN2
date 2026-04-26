@@ -77,9 +77,9 @@ compute_projection_directions <- function(data) {
   # Number of projection directions
   num_directions <- 18
   
-  # Generate 18 angles uniformly distributed from 0 to π (semicircle)
-  # This covers angles from 0° to 180°
-  angles <- seq(0, pi, length.out = num_directions)
+  # Generate 18 angles according to:
+  # a_j = (cos(j*pi/m), sin(j*pi/m))^T, j = 1, ..., m
+  angles <- (1:num_directions) * pi / num_directions
   
   # Convert angles to unit vectors on the semicircle
   # Each row represents a direction vector (cos(θ), sin(θ))
