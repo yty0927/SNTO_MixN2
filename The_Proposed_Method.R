@@ -74,10 +74,9 @@ The_proposed_method <- function(data, cs.bound_1 = c(0.1, 0.7, 0.7, 0.7, 0.7),
   best_mu2 <- best_estimates['mu2']
   best_sigma1 <- sqrt(best_estimates['sigma1'])  # Convert variance to standard deviation
   best_sigma2 <- sqrt(best_estimates['sigma2'])
-  pi2 <- 1 - best_alpha
   
   # Calculate Bayesian classification
-  log_ratio <- log(best_alpha/pi2) - log(best_sigma1/best_sigma2)
+  log_ratio <- log(best_alpha/(1 - best_alpha)) - log(best_sigma1/best_sigma2)
   a <- 1/(2*best_sigma1^2)
   b <- 1/(2*best_sigma2^2)
   llr <- log_ratio - a*(projected_data - best_mu1)^2 + b*(projected_data - best_mu2)^2
